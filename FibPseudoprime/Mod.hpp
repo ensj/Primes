@@ -3,35 +3,41 @@
 
 #include <iostream>
 
-struct Mod {
-  int a, n; // a (mod n)
-  Mod(int x = 0, int y = 1);
+class Mod {
+public:
+  Mod();
+  Mod(long x, long y);
 
+  long getA();
+  long getN();
+
+  Mod operator+(const Mod &modObj);
+  Mod operator+(const int val);
+  friend Mod operator+(const int val, const Mod &modObj);
+
+  Mod operator-(const Mod &modObj);
+  Mod operator-(const int val);
+  friend Mod operator-(const int val, const Mod &modObj);
+
+  Mod operator*(const Mod &modObj);
+  Mod operator*(const int val);
+  friend Mod operator*(const int val, const Mod &modObj);
+
+  Mod operator/(const Mod &modObj);
+
+  Mod operator^(int pow);
+
+  Mod operator%(const int m);
+
+  bool operator==(const Mod &modObj);
+  bool operator==(long val);
+
+  std::string getString() const;
+  friend std::ostream &operator<<(std::ostream &os, const Mod &modObj);
+
+private:
+  long a, n;
   void reduce();
 };
-
-std::ostream &operator<<(std::ostream &os, const Mod &a);
-
-Mod operator+(const Mod &a, const Mod &b);
-Mod operator+(const int &a, const Mod &b);
-Mod operator+(const Mod &a, const int &b);
-
-Mod operator-(const Mod &a, const Mod &b);
-Mod operator-(const int &a, const Mod &b);
-Mod operator-(const Mod &a, const int &b);
-
-Mod operator*(const Mod &a, const Mod &b);
-Mod operator*(const int &a, const Mod &b);
-Mod operator*(const Mod &a, const int &b);
-
-Mod operator/(const Mod &a, const int &b);
-
-Mod operator^(Mod a, int b);
-
-Mod operator%(const Mod &a, const int &b);
-
-bool operator==(const Mod &a, const Mod &b);
-bool operator==(const int &a, const Mod &b);
-bool operator==(const Mod &a, const int &b);
 
 #endif // MOD_H

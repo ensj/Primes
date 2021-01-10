@@ -7,7 +7,7 @@ bool fermatTest(int a, int b) {
     return false;
   Mod n(b, a);
   n = n ^ (a - 1);
-  if (n.a == 1)
+  if (n.getA() == 1)
     return true;
   return false;
 }
@@ -24,11 +24,11 @@ bool strongFermatTest(int a, int b) {
   }
   Mod n(b, a);
   n = n ^ t;
-  if (n.a == 1 || n.a == a - 1)
+  if (n.getA() == 1 || n.getA() == a - 1)
     return true;
   while (j > 0) {
     n = n ^ 2;
-    if (n.a == a - 1)
+    if (n.getA() == a - 1)
       return true;
     j--;
   }
@@ -43,7 +43,7 @@ bool pepinTest(int n) {
   Mod m(3, Fn);
   m = m ^ ((Fn - 1) / 2);
 
-  if (m.a == Fn - 1)
+  if (m.getA() == Fn - 1)
     return true;
   return false;
 }

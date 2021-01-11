@@ -47,3 +47,5 @@ bool pepinTest(int n) {
     return true;
   return false;
 }
+
+bool fibTest(int n) { return true; }

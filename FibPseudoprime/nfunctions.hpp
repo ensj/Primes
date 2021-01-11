@@ -14,4 +14,10 @@ int eulerphi(int a);
 
 bool carmichael(int a);
 
+int jacobi(int a);
+
+long fib(int n);
+
+void twoByTwo(long a[2][2], long b[2][2]);
+
 #endif // NFUNCTIONS_H

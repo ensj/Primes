@@ -3,27 +3,28 @@
 #include "ptests.hpp"
 #include <iostream>
 
-using namespace std;
-
 int main() {
-  cout << "1st prime Fermat number: 3" << endl;
-  int count = 2;
-  for (int i = 1; i < 10; i++) {
-    if (pepinTest(i)) {
-
-      if (count % 10 == 1) {
-        cout << count << "st prime Fermat number: ";
-      } else if (count % 10 == 2) {
-        cout << count << "nd prime Fermat number: ";
-      } else if (count % 10 == 3) {
-        cout << count << "rd prime Fermat number: ";
-      } else {
-        cout << count << "th prime Fermat number: ";
-      }
-
-      cout << ((1 << (1 << i)) + 1) << endl;
-      count++;
-    }
+  for (int i = 0; i < 10; i++) {
+    std::cout << i << ": " << fib(i) << std::endl;
   }
+  //    std::cout << "1st prime Fermat number: 3" << std::endl;
+  //    int count = 2;
+  //    for (int i = 1; i < 10; i++) {
+  //        if (pepinTest(i)) {
+  //            if (count % 10 == 1) {
+  //                std::cout << count << "st prime Fermat number: ";
+  //            } else if (count % 10 == 2) {
+  //                std::cout << count << "nd prime Fermat number: ";
+  //            } else if (count % 10 == 3) {
+  //                std::cout << count << "rd prime Fermat number: ";
+  //            } else {
+  //                std::cout << count << "th prime Fermat number: ";
+  //            }
+  //
+  //            long a = 1;
+  //            std::cout << ((a << (1 << i)) + 1) << std::endl;
+  //            count++;
+  //        }
+  //    }
   return 0;
 }

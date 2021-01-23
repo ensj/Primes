@@ -53,3 +53,62 @@ void twoByTwo(long a[2][2], long b[2][2]) {
     }
   }
 }
+
+void FibProduct(vector<size_t> one, vector<size_t> two)
+{
+	size_t x = 0;
+	size_t y = 1;
+	bool singleton = false;
+	bool odd_factors = false;
+
+
+	for (size_t i = 0; i < (size_t) pow(2, two.size()); ++i) 
+    {
+        for (size_t j = 0; j < two.size(); j++) 
+        { 
+			if ((i & (1 << j)) != 0)
+			{
+				odd_factors = !(odd_factors);
+				if (x == 0)
+				{
+					singleton = true;
+					x = two[j];
+				}
+				else
+				{
+					singleton = false;
+					x *= two[j];
+				}
+			}	
+		}
+
+		if(singleton == false && odd_factors == true)
+		{
+				cout << x << " times: 1 = " << x << endl;
+		}
+
+		if(odd_factors == true)
+		{
+			for (size_t k = 1; k < (size_t) pow(2, one.size()); ++k) 
+			{
+				y = 1;
+				cout << x << " times: ";
+
+				for (size_t l = 0; l < one.size(); l++) 
+				{ 
+					if ((k & (1 << l)) != 0)
+					{
+						cout << one[l] << ", ";
+						y *= one[l];
+					}
+				}
+
+				cout << "= " << x << " times " << y << " = " << x*y << endl;
+			}
+		}
+		cout << endl;
+
+		x = 0;
+		odd_factors = false;
+	}
+}

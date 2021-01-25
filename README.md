@@ -8,6 +8,8 @@ press command+shift+P, and navigate to preferences: open settings (JSON)
 make sure " "editor.formatOnSave": true, " exists in the json file
 make sure the following bit of code exists in the json file as well:
 
-```"[cpp]": {
+```
+"[cpp]": {
     "editor.defaultFormatter": "xaver.clang-format"
-  }```
+}
+```

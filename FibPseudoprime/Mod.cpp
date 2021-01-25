@@ -9,17 +9,13 @@ Mod::Mod(long x, long y) {
   reduce();
 }
 
-void Mod::reduce() {
-  if (a < 0) {
-    long z = abs(a / n);
-    a = a + n * (z + 1);
-  }
-  a = a % n;
-}
+void Mod::reduce() { a = ((a % n) + n) % n; }
 
 long Mod::getA() { return a; }
 
 long Mod::getN() { return n; }
+
+bool Mod::isEmpty() { return a == 0 && n == 0; }
 
 Mod Mod::operator+(const Mod &modObj) {
   Mod ans;
@@ -75,6 +71,11 @@ Mod Mod::operator*(const int val) {
   ans.a = val * a;
   ans.reduce();
   return ans;
+}
+
+Mod operator*(const int val, const Mod &modObj) {
+  Mod ans(modObj.a, modObj.n);
+  return ans * val;
 }
 
 // inverses

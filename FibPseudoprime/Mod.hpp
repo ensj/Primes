@@ -10,6 +10,7 @@ public:
 
   long getA();
   long getN();
+  bool isEmpty();
 
   Mod operator+(const Mod &modObj);
   Mod operator+(const int val);

@@ -29,15 +29,17 @@ std::vector<bool> baseTwo(int n);
 
 std::vector<Mod> chooseEAndP(long n);
 
-long ECAdd(Mod a, Mod b, Mod &x1, Mod &y1, Mod x2, Mod y2);
+// long ECAdd(Mod a, Mod b, Mod &x1, Mod &y1, Mod x2, Mod y2);
 
-long ECDouble(Mod a, Mod b, Mod &x1, Mod &y1);
+// long ECDouble(Mod a, Mod b, Mod &x1, Mod &y1);
 
-long ECMultiply(Mod a, Mod b, Mod &x, Mod &y, int t);
+// long ECMultiply(Mod a, Mod b, Mod &x, Mod &y, int t);
 
-long findRFactorialPOnE(int r, Mod a, Mod b, Mod x, Mod y);
+// long findRFactorialPOnE(int r, Mod a, Mod b, Mod x, Mod y);
 
-long ECFactor(long n, int r, int tries);
+// long ECFactor(long n, int r, int tries);
+
+std::vector<std::pair<long, int>> factorize(long n);
 
 // forgot to make you do this one in the code review
 void FibProduct(std::vector<size_t> one, std::vector<size_t> two);

@@ -49,3 +49,30 @@ bool pepinTest(int n) {
 }
 
 bool fibTest(int n) { return true; }
+
+bool millerRabin(long n, int k) {
+  if (n <= 3)
+    return true;
+  if (n % 2 == 0)
+    return false;
+
+  int r = (int)log2(n - 1);
+  int d = (n - 1) / pow(2, r);
+  for (int i = 0; i < k; i++) {
+    Mod x = Mod((rand() + 2) % (n - 2), n) ^ d;
+
+    if (x == 1 || x == -1) {
+      continue;
+    }
+
+    for (int j = 0; j < r - 1; j++) {
+      x = x ^ 2;
+      if (x == -1)
+        break;
+
+      return false;
+    }
+  }
+
+  return true;
+}

@@ -1,4 +1,7 @@
 #include "nfunctions.hpp"
+#include "ptests.hpp"
+#include "smallprimes.hpp"
+#include <cmath>
 
 long gcd(long a, long b) {
   if (b == 0)
@@ -246,6 +249,72 @@ long ECFactor(long n, int r, int tries) {
   }
 
   return 1;
+}
+
+// returns factorization using primes < 65521
+std::vector<std::pair<long, int>> smallPrimeFactors(long &n) {
+  std::vector<long>::iterator primePtr = smallPrimes.begin();
+  std::vector<std::pair<long, int>> res;
+
+  while (n > 1 || primePtr != smallPrimes.end()) {
+    if (n % (*primePtr) == 0) {
+      std::pair<long, int> factor(*primePtr, 1);
+      n /= *primePtr;
+      while (n % (*primePtr) == 0) {
+        factor.second++;
+        n /= *primePtr;
+      }
+
+      res.push_back(factor);
+    }
+    primePtr++;
+  }
+
+  return res;
+}
+
+std::pair<long, int> highPowers(long &n, long p) {
+  std::pair<long, int> pfactor(p, 1);
+
+  n /= p;
+  while (n % p == 0) {
+    n /= p;
+    pfactor.second++;
+  }
+
+  return pfactor;
+}
+
+// returns array of pairs of (factor, power)
+std::vector<std::pair<long, int>> factorize(long n) {
+  if (n == 0)
+    return std::vector<std::pair<long, int>>();
+  n = std::abs(n);
+
+  // remove small prime factors from n
+  std::vector<std::pair<long, int>> factors = smallPrimeFactors(n);
+
+  if (n == 1)
+    return factors;
+
+  while (n > 1) {
+    long probablePrimeFactor = ECFactor(n, 3000, 200);
+
+    if (probablePrimeFactor == 1)
+      break;
+
+    if (!millerRabin(probablePrimeFactor, 100)) {
+      std::vector<std::pair<long, int>> primeFactors =
+          factorize(probablePrimeFactor);
+      for (std::pair<long, int> f : primeFactors) {
+        factors.push_back(highPowers(f.first, n));
+      }
+    } else {
+      factors.push_back(highPowers(n, probablePrimeFactor));
+    }
+  }
+
+  return factors;
 }
 
 void FibProduct(std::vector<size_t> one, std::vector<size_t> two) {

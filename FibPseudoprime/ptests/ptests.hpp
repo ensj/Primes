@@ -12,4 +12,6 @@ bool pepinTest(int n);
 
 bool fibTest(int n);
 
+bool millerRabin(long n, int k);
+
 #endif // PTESTS_H
